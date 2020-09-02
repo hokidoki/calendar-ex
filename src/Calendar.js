@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 
-class Calendar extends Component {
+export default class Calendar extends Component {
   render() {
     return (
-      <div>
-        Hello Calendar
+      <div className="RCA-calendar-container">
+
       </div>
     )
   }
 }
 
-
-export default Calendar;

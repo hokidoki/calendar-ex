@@ -22,3 +22,40 @@
     background-color:  rgb(127, 184, 127)
 }
 
+/* header */
+
+.move-button{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.icon{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.left-img{
+    background-image : url('./left-icon.png');
+    
+}
+
+.right-img{
+    background-image: url('./right-icon.png');
+}
+
+.RCA-header-buttons{
+    padding: 0;
+    display: block;
+    list-style-type: none;
+    height: 40px;
+    margin: 0;
+}
+
+.RCA-header-buttons li{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+}
+

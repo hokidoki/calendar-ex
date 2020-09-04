@@ -1,3 +1,7 @@
+*{
+    margin: 0;
+}
+
 .test-layout{
     width: 100vw;
     height: 80vh;
@@ -12,10 +16,7 @@
     height: 100%;
 }
 
-.RCA-header-container{
-    flex-basis: 50px;
-    background-color: rgb(224, 215, 202);
-}
+
 
 .RCA-calendar-container{
     flex-grow: 1;
@@ -23,6 +24,12 @@
 }
 
 /* header */
+.RCA-header-container{
+    flex-basis: 50px;
+    background-color: rgb(224, 215, 202);
+    display: flex;
+
+}
 
 .move-button{
     width: 40px;
@@ -33,6 +40,7 @@
 .icon{
     background-size: contain;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .left-img{
@@ -44,11 +52,22 @@
     background-image: url('./right-icon.png');
 }
 
+.RCA-header-middle{
+    line-height: 50px;
+}
+
+.RCA-header-calendarYM{
+    box-sizing: border-box;
+    padding-left: 5px;
+    flex-grow: 1;
+}
+
 .RCA-header-buttons{
-    padding: 0;
+    flex-basis: 120px;
+    padding-left: 0;
+    padding-top: 4px;
     display: block;
     list-style-type: none;
-    height: 40px;
     margin: 0;
 }
 
@@ -58,4 +77,3 @@
     line-height: 40px;
     font-size: 20px;
 }
-

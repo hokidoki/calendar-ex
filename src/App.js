@@ -12,6 +12,12 @@ export default class App extends Component {
         calendarYM : moment(),
         today : moment()
     }
+
+    moveMonth = (month) => {
+        this.setState({
+            calendarYM : this.state.calendarYM.add(month,'M')
+        })
+    }
     
     render() {
         
@@ -20,6 +26,7 @@ export default class App extends Component {
                 <div className="RCA-app-container">
                     <Header calendarYM={this.state.calendarYM.format("YYYY년 MM월")}
                         today={this.state.today.format("현재 YYYY - MM - DD")}
+                        moveMonth={this.moveMonth}
                     />
                     <Calendar />
                 </div>

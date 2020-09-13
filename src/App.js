@@ -20,7 +20,6 @@ export default class App extends Component {
     }
     
     render() {
-        
         return (
             <div className="test-layout">
                 <div className="RCA-app-container">
@@ -28,7 +27,7 @@ export default class App extends Component {
                         today={this.state.today.format("현재 YYYY - MM - DD")}
                         moveMonth={this.moveMonth}
                     />
-                    <Calendar />
+                    <Calendar YM={this.state.calendarYM.format("YYYY-MM-DD")}/>
                 </div>
             </div>
         )

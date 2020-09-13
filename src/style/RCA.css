@@ -76,7 +76,9 @@
 
 .RCA-calendar-container{
     flex-grow: 1;
-    background-color:  rgb(127, 184, 127)
+    /* background-color:  rgb(127, 184, 127); */
+    display: flex;
+    flex-direction: column;
 }
 
 /* calendar-header */
@@ -115,4 +117,46 @@
     color: skyblue;
 }
 
+/* calendar */
+.RCA-calendar-day-container{
+    flex-grow: 1;
+    display : flex;
+    flex-wrap: wrap;
+}
 
+.RCA-calendar-day{
+    box-sizing: border-box;
+    position: relative;
+    flex-basis: 14.2857143%;
+    border: 0.1px solid white;
+    border-top: none;
+    background-color: rgb(225,224,224);
+}
+
+.RCA-calendar-week{
+    display: flex;
+    flex-grow: 1;
+}
+
+.RCA-calendar-day:nth-child(odd){
+    border-left : none;
+    border-right: none;
+}
+
+.RCA-calendar-day-label{
+    display: inline-block;
+    font-size: 1.2rem;
+    position: absolute;
+    text-align: center;
+    line-height: 25px;
+    top : 5px;
+    right: 5px;
+}
+
+.date-weekday-label{
+    color : rgb(71, 71, 71)
+}
+
+.date-notThisMonth{
+    color: rgb(255, 255, 255);
+}

@@ -160,3 +160,16 @@
 .date-notThisMonth{
     color: rgb(255, 255, 255);
 }
+
+.selected{
+    background-color: rgb(49,50,50);
+}
+
+.selected label{
+    font-size: 1.2rem;
+    color: white;
+    width: 25px;
+    height: 25px;
+    background-color: rgb(224, 62, 42);
+    border-radius: 100%;
+}

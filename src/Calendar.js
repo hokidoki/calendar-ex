@@ -55,23 +55,24 @@ class Week extends Component {
 
   state = {}
 
-  Days = (firstDayFormat) => {
+  Days = (firstDayFormat,weekIndex) => {
     const _days = [];
 
     for (let i = 0; i < 7; i++) {
 
-      const Day = moment(firstDayFormat).add('d', i);
+      const Day = moment(firstDayFormat).add(i,'d');
       _days.push({
         yearMonthDayFormat: Day.format("YYYY-MM-DD"),
         getDay: Day.format('D'),
-        isHolyDay: false
+        isHolyDay: false,
+        weekIndex
       });
     }
 
     return _days;
   }
 
-  mapDaysToComponents = (Days,calendarMonthYear ,fn = () => { }) => {
+  mapDaysToComponents = (Days,calendarMonthYear ,selectedDayFormat ,fn = () => { }) => {
 
     const thisMonth = moment(calendarMonthYear); 
 
@@ -87,12 +88,15 @@ class Week extends Component {
         className ="date-sat"
       }
 
+      if(moment(dayInfo.yearMonthDayFormat).isSame(selectedDayFormat,'day')){
+        className = "selected"
+      }
+
       return (
-        <div className={"RCA-calendar-day " + className} onClick={() => fn(dayInfo.yearMonthDayFormat)}>
+        <div className={"RCA-calendar-day " + className} key={`RCA-${dayInfo.weekIndex}-${i}-day`}onClick={() => fn(dayInfo.yearMonthDayFormat)}>
           <label className="RCA-calendar-day-label">
             {dayInfo.getDay}
           </label>
-          {/* <label className="RCA-calendar-day">{dayInfo.getDay}</label> */}
         </div>
       )
     })
@@ -103,7 +107,11 @@ class Week extends Component {
   render() {
     return (
       <div className="RCA-calendar-week">
-        {this.mapDaysToComponents(this.Days(this.props.firstDayOfThisWeekformat),this.props.ymOfThisCalendar)}
+        {this.mapDaysToComponents(this.Days(this.props.firstDayOfThisWeekformat,this.props.weekIndex),
+        this.props.ymOfThisCalendar,
+        this.props.selected,
+        this.props.fn
+        )}
       </div>
     )
   }
@@ -111,20 +119,23 @@ class Week extends Component {
 
 export default class Calendar extends Component {
 
-  Weeks = (monthYear) => {
+  Weeks = (monthYear,selected,clickFn) => {
     const firstDayOfMonth = moment(monthYear).startOf('month');
     const firstDateOfMonth = firstDayOfMonth.get('d');
 
-    const firstDayOfWeek = firstDayOfMonth.clone().add('d', -firstDateOfMonth);
-    // const lastDayOfThisCalendar = dayOfThisCalendar.clone().add('d', 6 * 7);
+    const firstDayOfWeek = firstDayOfMonth.clone().add(-firstDateOfMonth,'d');
 
     const _Weeks = [];
 
     for (let i = 0; i < 6; i++) {
       _Weeks.push((
-        <Week key={`RCA-calendar-week-${i}`} 
+        <Week key={`RCA-calendar-week-${i}`}
+        weekIndex={i}
         ymOfThisCalendar={firstDayOfMonth.format("YYYY-MM")}
-        firstDayOfThisWeekformat={firstDayOfWeek.clone().add('d', i * 7).format("YYYY-MM-DD")} />
+        firstDayOfThisWeekformat={firstDayOfWeek.clone().add(i * 7,'d').format("YYYY-MM-DD")}
+        selected={selected}
+        fn={clickFn}
+        />
       ))
     }
     return _Weeks
@@ -135,7 +146,7 @@ export default class Calendar extends Component {
     return (
       <div className="RCA-calendar-container">
         <DateHeader dates={"Sun, Mon, Tue, Wed, Thu, Fri, Sat"} />
-        {this.Weeks(this.props.YM)}
+        {this.Weeks(this.props.YM,this.props.selected,this.props.changeSelected)}
       </div>
     )
   }
